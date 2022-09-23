@@ -69,7 +69,7 @@
       "conversationId": 1,
       "sender": {
         "email": "tanvir@madrid.com",
-        "name": "Sumit Saha",
+        "name": "Tanvir Chowdhury",
         "id": 1
       },
       "receiver": {
@@ -90,7 +90,7 @@
       },
       "receiver": {
         "email": "tanvir@madrid.com",
-        "name": "Sumit Saha",
+        "name": "Tanvir Chowdhury",
         "id": 1
       },
       "message": "How are you?",
@@ -101,12 +101,12 @@
       "conversationId": 2,
       "sender": {
         "email": "saad@learnwithsumit.com",
-        "name": "Akash Ahmed",
+        "name": "Saad",
         "id": 2
       },
       "receiver": {
         "email": "tanvir@madrid.com",
-        "name": "Sumit Saha",
+        "name": "Tanvir Chowdhury",
         "id": 1
       },
       "message": "Tanvir - How are you?",
@@ -117,12 +117,12 @@
       "conversationId": 2,
       "sender": {
         "email": "tanvir@madrid.com",
-        "name": "Akash Ahmed",
+        "name": "Tanvir Chowdhury",
         "id": 2
       },
       "receiver": {
         "email": "saad@learnwithsumit.com",
-        "name": "Sumit Saha",
+        "name": "Saad Hasan",
         "id": 1
       },
       "message": "Saad - I am fine and you",
@@ -133,12 +133,12 @@
       "conversationId": 2,
       "sender": {
         "email": "saad@learnwithsumit.com",
-        "name": "Akash Ahmed",
+        "name": "Saad Hasan",
         "id": 2
       },
       "receiver": {
         "email": "tanvir@madrid.com",
-        "name": "Sumit Saha",
+        "name": "Tanvir Chowdhury",
         "id": 1
       },
       "message": "I am also fine",
@@ -149,12 +149,12 @@
       "conversationId": 2,
       "sender": {
         "email": "tanvir@madrid.com",
-        "name": "Akash Ahmed",
+        "name": "Tanvir Chowdhury",
         "id": 2
       },
       "receiver": {
         "email": "saad@learnwithsumit.com",
-        "name": "Sumit Saha",
+        "name": "Saad Hasan",
         "id": 1
       },
       "message": "Oh Thats great",
