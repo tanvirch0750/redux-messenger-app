@@ -23,6 +23,12 @@
       "password": "$2a$10$dQanKkTVY2DEa8LyUzer7OYQ7JYuUYgUenaaW6ef7SF47S638pqzO",
       "name": "Tanvir",
       "id": 4
+    },
+    {
+      "email": "tanvirch7575@gmail.com",
+      "password": "$2a$10$SbqjJdOks2bDlTdptKm6t.KOwUsrr6cuuYqAV4pFejslEikn0HB6S",
+      "name": "Tanvir Chowdhury",
+      "id": 5
     }
   ],
   "conversations": [
