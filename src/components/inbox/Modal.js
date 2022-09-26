@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import { useGetUserQuery } from '../../features/users/usersApi';
 import isValidEmail from '../../utils/isValidEmail';
+import Error from '../ui/Error';
 
 export default function Modal({ open, control }) {
   const [to, setTo] = useState('');
   const [message, setMessage] = useState('');
+  const [userCheck, setUserCheck] = useState(false);
+
+  const { data: participant } = useGetUserQuery(to, {
+    skip: !userCheck,
+  });
 
   const debounceHandler = (fn, delay) => {
     let timeoutId;
@@ -17,9 +24,9 @@ export default function Modal({ open, control }) {
   const doSearch = (value) => {
     if (isValidEmail(value)) {
       // check user api
-      console.log('Email is valid');
+      setUserCheck(true);
+      setTo(value);
     }
-    setTo(value);
   };
   const handleSearch = debounceHandler(doSearch, 500);
 
@@ -76,7 +83,9 @@ export default function Modal({ open, control }) {
               </button>
             </div>
 
-            {/* <Error message="There was an error" /> */}
+            {participant?.length === 0 && (
+              <Error message="This user does not exist" />
+            )}
           </form>
         </div>
       </>
