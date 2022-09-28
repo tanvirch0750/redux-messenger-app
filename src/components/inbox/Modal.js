@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { conversationsApi } from '../../features/conversations/conversationsApi';
+import {
+  conversationsApi,
+  useAddConversationMutation,
+  useEditConversationMutation,
+} from '../../features/conversations/conversationsApi';
 import { useGetUserQuery } from '../../features/users/usersApi';
 import isValidEmail from '../../utils/isValidEmail';
 import Error from '../ui/Error';
@@ -22,10 +26,13 @@ export default function Modal({ open, control }) {
     skip: !userCheck,
   });
 
+  const [addConversation, { isSuccess: isAddConversationSuccess }] =
+    useAddConversationMutation();
+  const [editConversation, { isSuccess: isEditConversationSuccess }] =
+    useEditConversationMutation();
+
   useEffect(() => {
     if (participant?.length > 0 && participant[0].email !== loggedinUserEmail) {
-      // check conversation existance
-
       // [implement how to dispatch action manually using rtk query inside useEffect. alternative to hook like we use before with userCheck]
       // [unwrap will return promise - because without that we cannot retrive data]
       dispatch(
@@ -41,6 +48,14 @@ export default function Modal({ open, control }) {
         .catch((err) => setResponseError('There was a problem'));
     }
   }, [participant, dispatch, loggedinUserEmail, to]);
+
+  // listen conversation add or edit success | close modal
+  useEffect(() => {
+    if (isAddConversationSuccess || isEditConversationSuccess) {
+      control();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAddConversationSuccess, isEditConversationSuccess]);
 
   const debounceHandler = (fn, delay) => {
     let timeoutId;
@@ -64,7 +79,26 @@ export default function Modal({ open, control }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted');
+    if (conversation?.length > 0) {
+      // edit conversation
+      editConversation({
+        id: conversation[0].id,
+        data: {
+          participants: `${loggedinUserEmail}-${participant[0].email}`,
+          users: [loggedInUser, participant[0]],
+          message: message,
+          timestamp: new Date().getTime(),
+        },
+      });
+    } else if (conversation?.length === 0) {
+      // add conversation
+      addConversation({
+        participants: `${loggedinUserEmail}-${participant[0].email}`,
+        users: [loggedInUser, participant[0]],
+        message,
+        timestamp: new Date().getTime(),
+      });
+    }
   };
 
   return (

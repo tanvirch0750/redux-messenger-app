@@ -39,14 +39,14 @@ export default function ChatItems() {
   if (!isLoading && !isError && conversations?.length > 0) {
     content = (
       <li>
-        {conversations.map((conversation) => {
+        {conversations?.map((conversation) => {
           const { id, message, timestamp, users } = conversation;
 
           const { name, email: partnerEmail } = getPartnerInfo(users, email);
+
           return (
-            <Link to={`/inbox/${id}`}>
+            <Link to={`/inbox/${id}`} key={id}>
               <ChatItem
-                key={id}
                 avatar={gravatarUrl(partnerEmail, { size: 80 })}
                 name={name}
                 lastMessage={message}
